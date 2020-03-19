@@ -1,0 +1,13 @@
+{
+  "name": "factorial_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "express": "*",
+    "redis": "*"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "bjarzembinski"
+}
