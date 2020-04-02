@@ -1,8 +1,8 @@
 FROM node:alpine as mybuild
 WORKDIR /opt/app
-COPY ./package.json .
+COPY ./task_3_docker_frontend/package.json .
 RUN yarn install
-COPY . .
+COPY ./task_3_docker_frontend .
 RUN yarn build
 
 FROM nginx
