@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+    - docker
+
+before_install:
+    - docker build -t bjarzemb/my-frontend -f task_3_docker_frontend/Dockerfile.dev .
+
+script:
+    - docker run -e CI=true bjarzemb/my-frontend yarn test
