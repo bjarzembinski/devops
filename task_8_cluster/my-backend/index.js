@@ -1,5 +1,6 @@
 const keys = require('./keys');
 const express = require('express');
+const { v4: uuidv4 } = require('uuid');
 const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
@@ -28,8 +29,12 @@ pgClient.query('CREATE TABLE IF NOT EXISTS results(number INT)').catch(err => {
     console.log(err);
 });
 
+const appId = uuidv4();
+
+console.log(keys);
+
 app.get('/', (req, resp) => {
-    resp.send('Hello from backend!');
+    resp.send(`[${appId}] ${keys.initMessage}`);
 });
 
 app.post('/max', (req, resp) => {
