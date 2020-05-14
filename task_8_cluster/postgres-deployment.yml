@@ -6,7 +6,7 @@ metadata:
     name: postgres-deployment
     labels:
         app: mypostgres
-        type: database
+        type: db
 
 spec:
     template:
@@ -14,7 +14,7 @@ spec:
             name: mypostgres-pod
             labels:
                 app: mypostgres
-                type: database
+                type: db
     
         spec:
             containers:
@@ -22,10 +22,12 @@ spec:
                   image: postgres
                   env:
                   - name: POSTGRES_PASSWORD
-                    value: 123qwe123qwe
+                    valueFrom:
+                        secretKeyRef:
+                            name: myapp-secret
+                            key: PGPASSWORD
 
-
-    replicas: 3
+    replicas: 1
     selector:
         matchLabels:
-            type: database
+            type: db
