@@ -18,7 +18,7 @@ spec:
     
         spec:
             containers:
-                - name: my-mybackend-container
+                - name: mybackend-container
                   image: bjarzemb/mybackend
 
                   env:

@@ -1,0 +1,31 @@
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Button {
+  width: 120px;
+  height: 40px;
+  border: none;
+  background: cornflowerblue;
+  color: white;
+  cursor: pointer;
+}
+
+.Button:hover {
+  background: midnightblue;
+}
+
+.Button:disabled {
+  background: lightgray;
+  cursor: not-allowed;
+}
+
+.Message {
+  height: 16px;
+  color: red;
+  font-size: 10px;
+}
