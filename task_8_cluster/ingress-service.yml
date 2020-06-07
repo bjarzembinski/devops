@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 
 metadata:
-  name: ingress-test-service
+  name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
@@ -11,8 +11,12 @@ metadata:
 spec:
   rules:
     - http:
-      paths:
-        - path: /api/?(.*)
-          backend:
-            serviceName: api-test-service
-            servicePort: 5050
+        paths:
+          - path: /api/?(.*)
+            backend:
+              serviceName: myapp-backend-clusterip
+              servicePort: 4000
+          - path: /?(.*)
+            backend:
+              serviceName: myapp-frontend-clusterip
+              servicePort: 80
