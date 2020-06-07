@@ -1,5 +1,4 @@
 apiVersion: v1
-
 kind: PersistentVolume
 
 metadata:
@@ -9,6 +8,17 @@ spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 100Mi
-  hostPath:
+    storage: 10Mi
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
     path: /Users/AlicjaCh/Desktop/bartek/temp/k8s-volume1
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - docker-desktop
