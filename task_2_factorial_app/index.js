@@ -6,7 +6,8 @@ const app = express();
 
 const client = redis.createClient({
     host: 'redis-server', //hostname from docker-compose
-    port: 6379
+    port: 6379,
+    retry_strategy: () => 1000
 });
 
 app.get("/:number", (req, res) => {
@@ -22,8 +23,10 @@ app.get("/:number", (req, res) => {
         if (!result) {
             const result = GetFactorial(value);
             client.set(value, parseInt(result));
+            res.send('Integral from ' + value + ' is: ' + result);
+        } else {
+            res.send('Integral from ' + value + ' is: ' + result);
         }
-        res.send('Integral from ' + value + ' is: ' + result);
     });
 });
 
